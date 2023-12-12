@@ -9,11 +9,18 @@ class CalcController {
     }
 
     initialize() {
-        this.displayDate = this.displayDate.toLocaleDateString('pt-br');
-        
-        setInterval(()=>{
-            this.displayTime = this.displayDate.toLocaleTimeString('pt-br');
-        },1000)
+        this.updateDisplayDateTime()
+
+        setInterval(() => {
+            this.updateDisplayDateTime()
+        }, 1000)
+
+    }
+
+
+    updateDisplayDateTime() {
+        this.displayDate = this.displayDate.toLocaleDateString(this._locale);
+        this.displayTime = this.displayDate.toLocaleTimeString(this._locale);
     }
 
     get displayCalc() {
