@@ -1,6 +1,7 @@
 class CalcController {
 
     constructor() {
+        this._operation = [];
         this._locale = 'pt-BR'
         this._displayCalcEl = document.querySelector("#display");
         this._dateEl = document.querySelector("#data");
@@ -19,10 +20,68 @@ class CalcController {
     }
 
     addEventListenerAll(element, events, fn) {
-        events.split(" ").forEach(e=>{
+        events.split(" ").forEach(e => {
             element.addEventListener(e, fn, false);
         })
     }
+
+    clearAll() {
+        this._operation = [];
+    }
+
+    clearEntry() {
+        this._operation.pop();
+    }
+
+    addNumberIntoOperation(value) {
+        if (!isNaN(value)) {
+            this._operation.push(value);
+        }
+    }
+
+    execButton(buttonValue) {
+
+        switch (buttonValue) {
+            case "ac":
+                this.clearAll();
+                break
+
+            case "ce":
+                this.clearEntry(this._operation);
+                break
+
+            case "porcento":
+                console.log("Porcentagem")
+                break
+
+            case "divisao":
+                console.log("dividir")
+                break
+
+            case "multiplicacao":
+                console.log("multiplicar")
+                break
+
+            case "subtracao":
+                console.log("subtrair")
+                break
+
+            case "soma":
+                console.log("Somar")
+                break
+
+            case "igual":
+                console.log("Resultado")
+                break
+
+            default:
+
+                this.addNumberIntoOperation(parseInt(buttonValue))
+                console.log(this._operation)
+
+        }
+    }
+
 
     initButtonsEvents() {
         let buttons = document.querySelectorAll("#buttons > g, #parts > g");
@@ -30,10 +89,10 @@ class CalcController {
         buttons.forEach((button) => {
             this.addEventListenerAll(button, "click drag", () => {
 
-                console.log(button.classList.value.replace("btn-", ""))
+                this.execButton(button.classList.value.replace("btn-", ""));
             })
 
-            this.addEventListenerAll(button, "mouseover mouseup mousedown", e=>{
+            this.addEventListenerAll(button, "mouseover mouseup mousedown", e => {
                 button.style.cursor = "pointer";
             })
         })
