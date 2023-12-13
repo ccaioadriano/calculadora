@@ -18,19 +18,19 @@ class CalcController {
 
     }
 
-
+    addEventListenerAll(element, events, fn) {
+        events.split(" ").forEach(e=>{
+            element.addEventListener(e, fn, false);
+        })
+    }
 
     initButtonsEvents() {
         let buttons = document.querySelectorAll("#buttons > g, #parts > g");
 
         buttons.forEach((button) => {
-            button.addEventListener("click", (e) => {
+            this.addEventListenerAll(button, "click drag", () => {
 
-                let valueButton = button.classList.value.replace("btn-","");
-                console.log(valueButton);
-
-                this.displayCalc = valueButton;
-
+                console.log(button.classList.value.replace("btn-", ""))
             })
         })
     }
