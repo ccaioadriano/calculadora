@@ -32,6 +32,10 @@ class CalcController {
 
                 console.log(button.classList.value.replace("btn-", ""))
             })
+
+            this.addEventListenerAll(button, "mouseover mouseup mousedown", e=>{
+                button.style.cursor = "pointer";
+            })
         })
     }
 
