@@ -26,7 +26,10 @@ class CalcController {
         buttons.forEach((button) => {
             button.addEventListener("click", (e) => {
 
-                let valueButton = button.classList.value.split("btn-")[1];
+                let valueButton = button.classList.value.replace("btn-","");
+                console.log(valueButton);
+
+                this.displayCalc = valueButton;
 
             })
         })
