@@ -25,6 +25,10 @@ class CalcController {
         })
     }
 
+    getLastElement(list) {
+        return list[list.length - 1];
+    }
+
     clearAll() {
         this._operation = [];
     }
@@ -77,7 +81,7 @@ class CalcController {
             default:
 
                 this.addNumberIntoOperation(parseInt(buttonValue))
-                console.log(this._operation)
+
 
         }
     }
