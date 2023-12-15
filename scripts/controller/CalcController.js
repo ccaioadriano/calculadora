@@ -67,18 +67,17 @@ class CalcController {
 
     addOperation(value){
 
-        console.log('A', isNaN(this.getLastOperation()));
-
         if (isNaN(this.getLastOperation())) {
 
             if (this.isOperator(value)) {
 
                 this.setLastOperation(value);
-                this._operation.push(value);
 
             } else if (isNaN(value)){
 
-                console.log(value);
+                if(this.isOperator(this.getLastOperation())){
+                    this.setLastOperation(value)
+                }
 
             } else {
 
@@ -101,6 +100,11 @@ class CalcController {
 
         console.log(this._operation);
 
+    }
+
+    execOperation(){
+        let value = this._operation.join("");
+        return eval(value);
     }
 
     setError(){
@@ -142,7 +146,7 @@ class CalcController {
                 break;
 
             case 'igual':
-                
+                    this.displayCalc = this.execOperation();
                 break;
 
             case 'ponto':
