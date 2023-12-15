@@ -74,6 +74,7 @@ class CalcController {
             if (this.isOperator(value)) {
 
                 this.setLastOperation(value);
+                this._operation.push(value);
 
             } else if (isNaN(value)){
 
@@ -87,9 +88,14 @@ class CalcController {
 
         } else {
 
-            let newValue = this.getLastOperation().toString() + value.toString();
+            if(this.isOperator(value)){
+                this._operation.push(value);
+            }else {
 
-            this.setLastOperation(parseInt(newValue));
+                let newValue = this.getLastOperation().toString() + value.toString();
+                this.setLastOperation(parseInt(newValue));
+            }
+
 
         }
 
