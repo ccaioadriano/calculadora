@@ -37,10 +37,9 @@ class CalcController {
         this._operation.pop();
     }
 
-    addNumberIntoOperation(value) {
-        if (!isNaN(value)) {
-            this._operation.push(value);
-        }
+
+    setError(){
+        this.displayCalc = "Error";
     }
 
     execButton(buttonValue) {
@@ -48,41 +47,58 @@ class CalcController {
         switch (buttonValue) {
             case "ac":
                 this.clearAll();
-                break
+                break;
 
             case "ce":
                 this.clearEntry(this._operation);
-                break
+                break;
 
             case "porcento":
-                console.log("Porcentagem")
-                break
+                this.addOperation("%");
+                break;
 
             case "divisao":
-                console.log("dividir")
-                break
+                this.addOperation("/");
+ 
+                break;
 
             case "multiplicacao":
-                console.log("multiplicar")
-                break
+                this.addOperation("*");
+     
+                break;
 
             case "subtracao":
-                console.log("subtrair")
-                break
+                this.addOperation("-");
+  
+                break;
 
             case "soma":
-                console.log("Somar")
-                break
+                this.addOperation("+");
+
+                break;
 
             case "igual":
-                console.log("Resultado")
-                break
+                
+                break;
 
+            case "ponto":
+                this.addOperation(".");
+            break;
+
+            case '0':
+            case '1':
+            case '2':
+            case '3':
+            case '4':
+            case '5':
+            case '6':
+            case '7':
+            case '8':
+            case '9':
+                this.addOperation(parseInt(buttonValue));
+                break;
             default:
-
-                this.addNumberIntoOperation(parseInt(buttonValue))
-
-
+                this.setError();
         }
     }
 
